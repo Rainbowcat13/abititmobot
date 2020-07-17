@@ -67,7 +67,7 @@ def update_schedule(update, context):
     user_id = query.message.chat.id
     current_user = users.find_one({'user_id': user_id})
     if time() - current_user['last_update_time'] > COOLDOWN:
-        users.find_one_and_update({'user_id': user_id}, {'$set': {'last_update_time', time()}})
+        users.find_one_and_update({'user_id': user_id}, {'$set': {'last_update_time': time()}})
         user_schedule = current_user['schedule']
         if analyzers.get(user_schedule) is None:
             analyzers[user_schedule] = Analyzer(user_schedule)
