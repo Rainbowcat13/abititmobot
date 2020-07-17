@@ -22,7 +22,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Inlin
 
 from analyzer import Analyzer
 
-COOLDOWN = 10
+COOLDOWN = 11
 schedule_numbers = json.load(open('schedule_numbers.json', 'r', encoding='utf8'))
 schedules = list(schedule_numbers.keys())
 analyzers = {schedule: None for schedule in schedules}
