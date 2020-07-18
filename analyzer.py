@@ -86,3 +86,4 @@ class Analyzer:
         for row in self.data:
             if row['ФИО'] == enrollee:
                 return int(row['№ п/п']), row['Условие поступления']
+        return 0, 'Ошибка!'
