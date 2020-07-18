@@ -80,10 +80,10 @@ class Analyzer:
         return static_string
 
     def enrollee_list(self):
-        return [row['ФИО'] for row in self.data]
+        return [row['ФИО'].strip() for row in self.data]
 
     def count_enrollee_rating(self, enrollee):
         for row in self.data:
-            if row['ФИО'] == enrollee:
+            if row['ФИО'].strip() == enrollee.strip():
                 return int(row['№ п/п']), row['Условие поступления']
-        return 0, 'Ошибка!'
+        return 0, '. Произошла ошибка в работе бота! Пожалуйста, свяжитесь с автором.'
