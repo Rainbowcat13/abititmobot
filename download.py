@@ -6,8 +6,11 @@ class Parser:
     def __init__(self, schedule_number):
         self.schedule_number = schedule_number
 
+    def link(self):
+        return f'https://abit.itmo.ru/bachelor/rating_rank/all/{self.schedule_number}'
+
     def parse(self):
-        res = requests.get(f'https://abit.itmo.ru/bachelor/rating_rank/all/{self.schedule_number}', verify=False).text
+        res = requests.get(self.link(), verify=False).text
         soup = BeautifulSoup(res, features="html.parser")
         table_rows = [table_row.find_all('td') for table_row in soup.find_all('tr')]
         columns_names = table_rows[:2]
