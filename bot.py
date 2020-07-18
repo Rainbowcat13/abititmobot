@@ -99,7 +99,7 @@ def inlinequery(update, context):
                     input_message_content=InputTextMessageContent(schedule)))
     elif query.startswith('Начните писать ФИО: '):
         query = query.replace('Начните писать ФИО: ', '').lower()
-        current_user = users.find_one(user_id)
+        current_user = users.find_one({'user_id': user_id})
         if current_user.get('schedule') is None:
             update.inline_query.answer([InlineQueryResultArticle(
                     id=uuid4(),
@@ -139,7 +139,7 @@ def set_enrollee(update, context):
 
 def count_rating(update, context):
     enrollee = update.message.text.replace('Абитуриент: ', '')
-    current_user = users.find_one(update.message.chat.id)
+    current_user = users.find_one({'user_id': update.message.chat.id})
     if current_user.get('schedule') is None:
         update.message.reply_text('Сначала выберите направление!')
         return
